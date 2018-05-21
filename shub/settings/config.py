@@ -19,9 +19,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 '''
 
-SECRET_KEY = 'r1ujq^aetezi8#d!#)7mxw2qv9&kh(t+043x)(=e3owl9)mf$8'
+# Root directories
+
+MEDIA_ROOT='/data/sregistry/www/images'
+STATIC_ROOT='/data/sregistry/www/static'
 
 # AUTHENTICATION
+
+SECRET_KEY = 'r1ujq^aetezi8#d!#)7mxw2qv9&kh(t+043x)(=e3owl9)mf$8'
 
 # Which social auths do you want to use?
 ENABLE_GOOGLE_AUTH=False

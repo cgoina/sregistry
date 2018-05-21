@@ -1,18 +1,12 @@
 from importlib import import_module
 
 from .applications import *
-from .config import *
 from .main import *
+from .config import *
 from .logging import *
 from .auth import *
 from .api import *
 from .tasks import *
-
-
-# Root directories
-
-MEDIA_ROOT='/data/sregistry/www/images'
-STATIC_ROOT='/data/sregistry/www/static'
 
 
 # Apply any plugin settings
