@@ -106,6 +106,5 @@ LOGGING_SAVE_RESPONSES=True
 
 PLUGINS_ENABLED = [
     'ldap_auth',
-    'saml_auth',
     'globus'
 ]
