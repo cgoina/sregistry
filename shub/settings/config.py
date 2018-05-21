@@ -19,11 +19,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 '''
 
+SECRET_KEY = 'r1ujq^aetezi8#d!#)7mxw2qv9&kh(t+043x)(=e3owl9)mf$8'
+
 # AUTHENTICATION
 
 # Which social auths do you want to use?
 ENABLE_GOOGLE_AUTH=False
-ENABLE_TWITTER_AUTH=True
+ENABLE_TWITTER_AUTH=False
 ENABLE_GITHUB_AUTH=False
 ENABLE_GITLAB_AUTH=False
 
@@ -36,21 +38,13 @@ ENABLE_GITLAB_AUTH=False
 # available, and configured, as plugins.
 
 
-
-# DOMAIN NAMES
-
-DOMAIN_NAME = "http://127.0.0.1"
-DOMAIN_NAME_HTTP = "http://127.0.0.1"
-DOMAIN_NAKED = DOMAIN_NAME_HTTP.replace('http://','')
-
-ADMINS = (( 'vsochat', 'vsochat@gmail.com'),)
+ADMINS = (( 'goinac', 'goinac@janelia.hhmi.org'),)
 MANAGERS = ADMINS
 
-HELP_CONTACT_EMAIL = 'vsochat@stanford.edu'
-HELP_INSTITUTION_SITE = 'srcc.stanford.edu'
-REGISTRY_NAME = "Tacosaurus Computing Center"
-REGISTRY_URI = "taco"
-
+HELP_CONTACT_EMAIL = 'goinac@janelia.hhmi.org'
+HELP_INSTITUTION_SITE = 'janelia.hhmi.org'
+REGISTRY_NAME = "HHMI Janelia SRegistry"
+REGISTRY_URI = "hhmi-janelia"
 
 
 # PERMISSIONS
@@ -65,6 +59,12 @@ PRIVATE_ONLY = False
 DEFAULT_PRIVATE = False
 
 
+# DOMAIN NAMES
+
+DOMAIN_NAME = "http://c11u16.int.janelia.org:3033"
+DOMAIN_NAME_HTTP = "http://c11u16.int.janelia.org:3033"
+DOMAIN_NAKED = DOMAIN_NAME_HTTP.replace('http://','')
+
 
 # DATABASE
 
@@ -73,9 +73,9 @@ DEFAULT_PRIVATE = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
+        'NAME': 'sregistry',
+        'USER': 'sregistry',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -98,14 +98,14 @@ LOGGING_SAVE_RESPONSES=True
 # Add the name of a plugin under shub.plugins here to enable it
 
 
-
 # Available Plugins:
 
 # - ldap_auth: Allows sregistry to authenitcate against an LDAP directory
 # - globus: allows connection from sregistry to endpoints
-# - saml: authentication with SAML
+# - saml_auth: authentication with SAML
 
 PLUGINS_ENABLED = [
-#    'ldap_auth',
-#    'saml_auth'
+    'ldap_auth',
+    'saml_auth',
+    'globus'
 ]

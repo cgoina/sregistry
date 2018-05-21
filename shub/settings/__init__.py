@@ -8,6 +8,13 @@ from .auth import *
 from .api import *
 from .tasks import *
 
+
+# Root directories
+
+MEDIA_ROOT='/data/sregistry/www/images'
+STATIC_ROOT='/data/sregistry/www/static'
+
+
 # Apply any plugin settings
 for plugin in PLUGINS_ENABLED:
 
