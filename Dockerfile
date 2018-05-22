@@ -46,16 +46,16 @@ ADD . /code/
 # PLUGINS
 # You are free to comment out those plugins that you don't want to use
 
-# Install LDAP (uncomment if wanted)
-# RUN pip install python3-ldap
-# RUN pip install django-auth-ldap
+# Install LDAP 
+RUN pip install python3-ldap
+RUN pip install django-auth-ldap
 
-# Install Globus (uncomment if wanted)
-# RUN /bin/bash /code/scripts/globus/globus-install.sh
+# Install Globus Packages
+RUN pip install globus-cli globus-sdk[jwt]
 
-# Install SAML (uncomment if wanted)
-# RUN pip install python3-saml
-# RUN pip install social-auth-core[saml]
+# Install SAML
+RUN pip install python3-saml
+RUN pip install social-auth-core[saml]
 
 ################################################################################
 # BASE
@@ -75,6 +75,6 @@ RUN echo "0 0 * * * /usr/bin/python /code/manage.py generate_tree" >> /code/cron
 RUN crontab /code/cronjob
 RUN rm /code/cronjob
 
-CMD /code/run_uwsgi.sh
+CMD uwsgi /code/uwsgi.ini
 
-EXPOSE 3031
+EXPOSE 3033

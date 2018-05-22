@@ -99,6 +99,13 @@ VISUALIZATION_TREEMAP_COLLECTION_SWITCH=1000
 # If you disable, we still keep track of collection pull counts, but not specific versions
 LOGGING_SAVE_RESPONSES=True
 
+
+# SAML Configuration
+
+AUTH_SAML_IDP = "hhmi-janelia"
+AUTH_SAML_INSTITUTION = "HHMI | Janelia Research Campus"
+
+
 # Plugins
 # Add the name of a plugin under shub.plugins here to enable it
 
@@ -111,5 +118,6 @@ LOGGING_SAVE_RESPONSES=True
 
 PLUGINS_ENABLED = [
     'ldap_auth',
-    'globus'
+    'globus',
+    'saml_auth'
 ]
