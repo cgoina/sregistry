@@ -1,4 +1,4 @@
-FROM python:3.5.1
+FROM python:3.6.5
 ENV PYTHONUNBUFFERED 1
 
 ################################################################################
@@ -21,7 +21,6 @@ RUN apt-get update && apt-get install -y \
     libtool \
     libopenblas-dev \
     libglib2.0-dev \
-    gfortran \
     libxml2-dev \
     libxmlsec1-dev \
     libhdf5-dev \
@@ -40,8 +39,6 @@ ADD requirements.txt /tmp/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements.txt
 
-ADD . /code/
-
 ################################################################################
 # PLUGINS
 # You are free to comment out those plugins that you don't want to use
@@ -57,24 +54,18 @@ RUN pip install globus-cli globus-sdk[jwt]
 RUN pip install python3-saml
 RUN pip install social-auth-core[saml]
 
-################################################################################
-# BASE
-
-RUN mkdir -p /code && mkdir -p /code/images
-RUN mkdir -p /var/www/images && chmod -R 0755 /code/images/
-
-WORKDIR /code
-RUN apt-get remove -y gfortran
-
+#  Clean up
 RUN apt-get autoremove -y
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install crontab to setup job
-RUN echo "0 0 * * * /usr/bin/python /code/manage.py generate_tree" >> /code/cronjob
-RUN crontab /code/cronjob
-RUN rm /code/cronjob
+################################################################################
+# BASE
+
+ADD . /code/
+
+WORKDIR /code
 
 CMD uwsgi /code/uwsgi.ini
 
-EXPOSE 3033
+EXPOSE 3032
